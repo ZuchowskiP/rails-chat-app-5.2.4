@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       flash[:success] = "You have successfully logged in"
       redirect_to root_path
     else
-      flash.now[:alert] = "Error invalid login information"
+      flash.now[:error] = "Error invalid login information"
       render 'new'
     end
   end
