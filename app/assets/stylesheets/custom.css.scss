@@ -19,6 +19,12 @@
   }
 }
 
-.wide-element{
-  width: 50%;
+.mt-2{
+  margin-top: 5px;
+}
+
+.wrap-content{
+  min-width: max-content;
+  width: 40%;
+  max-width: 60%;
 }

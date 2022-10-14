@@ -1,0 +1,21 @@
+<%= render 'layouts/messages' %>
+<% if @friends and @friends.length != 0 %>
+  <div class="segment">
+    <table class="ui celled table wrap-content">
+      <tbody>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td><strong>Name:</strong><%= friend.username %></td>
+          <td><strong>Actions:</strong>
+            <%= form_for friend, url: friendships_path(friend: friend), method: :post do |f| %>
+              <%= f.check_box :is_family, class: "ui checkbox" %>
+              <label>Mark as family?</label>
+              <%= f.submit "Add as friend", class: "tiny ui button"%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

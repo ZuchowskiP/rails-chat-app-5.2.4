@@ -1,0 +1,19 @@
+<table class="celled table wrap-content">
+  <thead>
+  <tr>
+    <th>Username</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @friends.each do |friend| %>
+    <tr>
+      <td data-label="Username"><%= friend.username %></td>
+      <td data-label="Actions">
+        <%= link_to "Remove friend", friendship_path(friend), method: :delete, data: {confirm: "Are you sure?"},
+                                    class: "ui red button"%>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
