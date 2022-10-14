@@ -6,11 +6,15 @@
       <% @friends.each do |friend| %>
         <tr>
           <td><strong>Name:</strong><%= friend.username %></td>
-          <td><strong>Actions:</strong>
-            <%= form_for friend, url: friendships_path(friend: friend), method: :post do |f| %>
-              <%= f.check_box :is_family, class: "ui checkbox" %>
-              <label>Mark as family?</label>
-              <%= f.submit "Add as friend", class: "tiny ui button"%>
+          <td class="flex"><strong>Actions:</strong>
+            <% if current_user.not_friends_with?(friend) %>
+              <%= form_for friend, url: friendships_path(friend: friend), method: :post do |f| %>
+                <span class="mr-2">Mark as family?</span>
+                <%= f.check_box :is_family, class: "ui checkbox" %>
+                <%= f.submit "Add as friend", class: "mini ui button label-width"%>
+              <% end %>
+              <% else %>
+              <label class="ui label ml-auto">You are already friends</label>
             <% end %>
           </td>
         </tr>
