@@ -16,8 +16,4 @@ class Channel < ApplicationRecord
     create(sender_id: sender_id, recipient_id: recipient_id)
   end
 
-  def opposed_user(user)
-    user == recipient ? sender : recipient
-  end
-
 end
