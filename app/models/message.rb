@@ -1,5 +1,8 @@
 class Message < ApplicationRecord
   belongs_to :user
+  belongs_to :channel, optional: true, class_name: "Channel"
   validates :body, presence: true
-  scope :custom_display, -> { order(:created_at).last(20) }
+  scope :all_chat, -> { where(channel_id: nil).order(:created_at).last(20) }
+
+
 end

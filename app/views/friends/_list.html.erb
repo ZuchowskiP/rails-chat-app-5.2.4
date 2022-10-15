@@ -16,7 +16,7 @@
                         class: "ui red button"%>
             <%= link_to obj == @family ? "Remove from family" : "Add to family",
                         toggle_family_path(friend: f), method: :post, class: "ui blue button" %>
-            <%= link_to "Private chat", private_chat_path(friend: f), class: "ui grey button" %>
+            <%= link_to "Private chat", private_channel_path(friend: f), class: "ui grey button" %>
           </div>
         </td>
       </tr>

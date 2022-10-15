@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :friendships
   has_many :friends, through: :friendships
+  has_many :channels, foreign_key: :sender_id
   has_secure_password
 
   def add_friend(friend)
