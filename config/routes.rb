@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'message', to: 'messages#create'
   get 'friends', to: 'friends#index'
   get 'search_friend', to: 'friends#search'
+  post 'toggle_family', to: 'friends#toggle_family'
 
 
   mount ActionCable.server, at: '/cable'

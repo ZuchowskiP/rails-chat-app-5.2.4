@@ -2,13 +2,11 @@ class FriendshipsController < ApplicationController
 
   def create
     friend = User.find(params[:friend])
-    current_user.friendships.build(friend_id: friend.id)
-    if current_user.save
-      if params[:user][:is_family] ==  "1"
-        byebug
+    if current_user.add_friend(friend)
+      if params[:user][:is_family] == "1"
         current_user.toggle_family(friend.id)
       end
-      flash[:success] = "Added #{friend.username} as friend"
+      flash[:success] = "Added #{friend.username}"
     else
       flash[:error] = "Something went wrong"
     end
@@ -16,8 +14,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    friendship = current_user.friendships.where(friend_id: params[:id]).first
-    friendship.destroy
+    current_user.remove_friend(params[:id])
     flash[:success] = "Successfully removed friend"
     redirect_to friends_path
   end

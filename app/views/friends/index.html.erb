@@ -4,14 +4,23 @@
   <%= form_tag search_friend_path, remote:true, method: :get do  %>
     <div class="search four column">
       <div class="ui icon input wide-element">
-        <%= text_field_tag :friend, params[:friend], placeholder: "Username", autofocus: true, class: "four column" %>
+        <%= text_field_tag :friend, params[:friend], placeholder: "Username", class: "four column" %>
         <i class="search icon"></i>
       </div>
     </div>
   <% end %>
   <div id="results"></div>
 </div>
+<div class="ui grid">
+  <div class="eight wide column">
+    <% if @friends.count != 0 %>
+      <%= render 'list', obj: @friends %>
+    <% end %>
+  </div>
+  <div class="eight wide column">
+    <% if @family.count != 0 %>
+      <%= render 'list', obj:  @family %>
+    <% end %>
+  </div>
+</div>
 
-<% if @friends.length != 0 %>
-  <%= render 'list' %>
-<% end %>

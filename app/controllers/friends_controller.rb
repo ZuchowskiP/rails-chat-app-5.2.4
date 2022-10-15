@@ -1,6 +1,18 @@
 class FriendsController < ApplicationController
   def index
-    @friends = current_user.friends
+    @friends = current_user.get_friends
+    @family = current_user.get_family
+  end
+
+  def toggle_family
+    if params[:friend].present?
+      friend = User.find(params[:friend])
+      current_user.toggle_family(friend.id)
+      flash[:success] = "Changed family status with user #{friend.username}"
+    else
+      flash[:error] = "Something went wrong"
+    end
+    redirect_to friends_path
   end
 
   def search

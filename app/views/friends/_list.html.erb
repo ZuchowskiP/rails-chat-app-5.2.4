@@ -1,19 +1,25 @@
-<table class="celled table wrap-content">
-  <thead>
-  <tr>
-    <th>Username</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-    <% @friends.each do |friend| %>
+<h1><%= obj == @family ? "Family members" : "Friends" %></h1>
+  <table class="celled table wrap-content">
+    <thead>
     <tr>
-      <td data-label="Username"><%= friend.username %></td>
-      <td data-label="Actions">
-        <%= link_to "Remove friend", friendship_path(friend), method: :delete, data: {confirm: "Are you sure?"},
-                                    class: "ui red button"%>
-      </td>
+      <th>Username</th>
+      <th class="wide">Actions</th>
     </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% obj.each do |f| %>
+      <tr>
+        <td class="label-width"><%= f.username %></td>
+        <td>
+          <div class="three ui buttons">
+            <%= link_to "Remove friend", friendship_path(f), method: :delete, data: {confirm: "Are you sure?"},
+                        class: "ui red button"%>
+            <%= link_to obj == @family ? "Remove from family" : "Add to family",
+                        toggle_family_path(friend: f), method: :post, class: "ui blue button" %>
+            <%= link_to "Private chat", '#', class: "ui grey button" %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
