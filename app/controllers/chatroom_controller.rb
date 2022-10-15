@@ -5,5 +5,9 @@ class ChatroomController < ApplicationController
     @messages = Message.custom_display
   end
 
+  def private
+
+  end
+
 end
 

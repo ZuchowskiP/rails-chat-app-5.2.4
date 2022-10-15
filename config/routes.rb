@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'friends', to: 'friends#index'
   get 'search_friend', to: 'friends#search'
   post 'toggle_family', to: 'friends#toggle_family'
-
-
+  get 'private_chat', to: 'chatroom#private'
   mount ActionCable.server, at: '/cable'
 end
